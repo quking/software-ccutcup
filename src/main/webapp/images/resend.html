@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>resend the message</title>
+    <script type="text/javascript">
+        var countdown=60;
+      function settime() {
+          var obj=document.getElementById('btn');
+            if(countdown==0){
+                obj.removeAttribute('disabled');
+                obj.innerHTML='重新发送验证码';
+                countdown=60;
+                return;
+            }else{
+                obj.setAttribute('disabled',true);
+                obj.innerHTML='重新发送验证码（'+countdown+')';
+                countdown--;
+
+            }
+            setTimeout('settime()',1000);
+        }
+    </script>
+</head>
+<body>
+
+<input type="text" id="msg"><button id="btn" onclick="settime()">免费获取验证码</button>
+</body>
+</html>

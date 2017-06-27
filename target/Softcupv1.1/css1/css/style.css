@@ -1,0 +1,49 @@
+.StatBarL{position:absolute;
+	      top:50px; 
+		  left:780px; 
+		  z-index:1366;
+		  display: inline-block;
+		  }﻿
+div.syx {text-align:center}
+div.syx ul{border:0; margin:0; padding:0;}
+
+div.syx #pagination-flickr li{
+	border:0; margin:0; padding:0;
+	font-size:16px;
+	list-style:none;
+}
+div.syx #pagination-flickr a{
+	border:solid 1px #DDDDDD;
+	margin-right:2px;
+}
+div.syx #pagination-flickr .previous-off,
+div.syx #pagination-flickr .next-off {
+	color:#666666;
+	display:block;
+	float:left;
+	font-weight:bold;
+	padding:3px 4px;
+}
+div.syx #pagination-flickr .next a,
+div.syx #pagination-flickr .previous a {
+	font-weight:bold;
+	border:solid 1px #FFFFFF;
+}
+div.syx #pagination-flickr .active{
+	color:#ff0084;
+	font-weight:bold;
+	display:block;
+	float:left;
+	padding:4px 6px;
+}
+div.syx #pagination-flickr a:link,
+div.syx #pagination-flickr a:visited {
+	color:#0063e3;
+	display:block;
+	float:left;
+	padding:3px 6px;
+	text-decoration:none;
+}
+div.syx #pagination-flickr a:hover{
+	border:solid 1px #666666;
+}

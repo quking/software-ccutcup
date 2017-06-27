@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.NoticeDao">
+    <insert id="insertNotice" parameterType="com.pojo.Notice" >
+        insert into "notice" values(#{title},#{content},#{noticePerson},#{noticeDatetime});
+    </insert>
+
+    <delete id="deleteNotice">
+        delete from "notice" where "noticeId" = #{noticeId};
+    </delete>
+
+    <delete id="deleteSelectNotice" parameterType="com.pojo.Notice">
+        delete from "notice" where "noticeId" = #{noticeId}
+    </delete>
+
+    <select id="selectAllNotice" resultType="com.pojo.Notice">
+        select * from "notice"
+    </select>
+
+    <select id="selectNoticeById" resultType="com.pojo.Notice">
+            select * from "notice" where "noticeId" = #{noticeId}
+            </select>
+    </mapper>

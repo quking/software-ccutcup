@@ -1,0 +1,16 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.Logincheck">
+    <select id="checklogin" parameterType="String" resultType="users">
+        SELECT *FROM "SYSDBA"."Admins" WHERE "username"=#{username} AND "password"=#{password}
+    </select>
+    <update id="uppassword" parameterType="users">
+        UPDATE "SYSDBA"."Admins" SET "password"=#{password} WHERE "id"=1
+    </update>
+    <select id="selpassword" resultType="String">
+        SELECT "password" from "SYSDBA"."Admins" where "id"=1
+    </select>
+    <update id="updatetime" parameterType="users">
+        UPDATE "SYSDBA"."Admins" SET "lastlogintime"=#{lastlogintime} WHERE "id"=1
+    </update>
+</mapper>

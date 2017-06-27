@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.InvoiceDao">
+    <insert id="insertInvoice" parameterType="com.pojo.Invoice" >
+        insert into "invoice"("invoiceCode","invoiceId","companyName","tel","datetime","totalPrice","tax","category","goodName","unitPrice","amount","rate")
+        values(#{invoiceCode},#{invoiceId},#{companyName},#{tel},#{datetime},#{totalPrice},#{tax},#{category},#{goodName},#{unitPrice},#{amount},#{rate});
+    </insert>
+
+
+    <update id="updateInvoice" parameterType="com.pojo.Invoice">
+        UPDATE "invoice" SET "invoiceCode"=#{invoiceCode},"invoiceId"=#{invoiceId},"companyName"=#{companyName},"tel"=#{tel},"datetime"=#{datetime},"totalPrice"=#{totalPrice},"tax"=#{tax},"category"=#{category},"goodName"=#{goodName},"unitPrice"=#{unitPrice},"amount"=#{amount},"rate"=#{rate} WHERE "inid"=#{inid};
+    </update>
+
+    <delete id="deleteInvoiceByCodeAndId" >
+        delete from "invoice" where "invoiceCode" = #{invoiceCode} and "invoiceId" = #{invoiceId};
+    </delete>
+
+    <delete id="deleteselectall" parameterType="com.pojo.Invoice">
+        DELETE FROM "invoice" WHERE "inid"=#{inid}
+    </delete>
+
+    <select id="guanLian" resultType="com.pojo.Invoice">
+        SELECT * from "invoice" WHERE "invoiceCode" = #{invoiceCode} and "invoiceId" = #{invoiceId};
+            </select>
+    <select id="selectInvoice" resultType="com.pojo.Invoice">
+       SELECT * from "invoice"
+        <if test="category == 2">
+                WHERE "category" != 2
+        </if>
+        <if test="category == 0 || category == 1">
+                where "category" = #{category}
+        </if>
+        <if test="invoiceCode != null">
+            and "invoiceCode" = #{invoiceCode}
+        </if>
+        <if test ="invoiceId !=null">
+            and "invoiceId" = #{invoiceId}
+        </if>
+        <if test="startDate != null and endDate != null" >
+            and "datetime" &gt;= #{startDate} and "datetime" &lt;= #{endDate}
+        </if>
+        <if test="companyName != null">
+            and "companyName" = #{companyName}
+        </if>
+
+    </select>
+
+    <select id="findAll" resultType="com.pojo.Invoice">
+        select * from "invoice"
+    </select>
+
+    <select id="selectAllInvoice" parameterType="com.pojo.Invoice" resultType="com.pojo.Invoice">
+        SELECT * FROM "invoice" WHERE "invoiceCode"=#{invoiceCode} AND "invoiceId"=#{invoiceId}
+    </select>
+
+    <select id="selectYear" resultType ="String">
+
+        select year("datetime") from "invoice" group by year("datetime")
+
+    </select>
+    <select id="selectdate" parameterType="com.pojo.Invoice" resultType="com.pojo.Invoice">
+        SELECT *FROM "invoice" WHERE year("datetime")=#{year} AND month("datetime")=#{month} AND "category"=#{category}
+    </select>
+    <select id="selectGoodNameByDate" resultType="com.pojo.Invoice" parameterType="com.pojo.Invoice">
+
+        select "goodName" from "invoice"  where year("datetime") = ${year} and "category" = ${category} group by "goodName"
+
+    </select>
+
+    <select id="selectInvoiceByRate" resultType="com.pojo.Invoice">
+
+        select * from "invoice" where "category" = ${category} and "rate" = ${rate} and year("datetime") = ${year};
+
+    </select>
+</mapper>
